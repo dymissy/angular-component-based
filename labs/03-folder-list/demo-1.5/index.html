@@ -1,19 +1,15 @@
 <html>
     <head>
-        <link rel="stylesheet" href="../lib/bootstrap-3.3.7-dist/css/bootstrap.css">    
+        <link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.css">    
         <link rel="stylesheet" href="style.css">    
 
-        <script src="../lib/angular-1.5.8/angular.js" defer></script>
+        <script src="../../lib/angular-1.5.8/angular.js" defer></script>
         <script src="app.js" defer></script>
         <script src="mailController.js" defer></script>
         <script src="components/mailService/mailService.js" defer></script>
-        <script src="components/search-panel/search-panel.js" defer></script>
-        <script src="components/folder-list/folder-list.js" defer></script>
-        <script src="components/message-list/message-list.js" defer></script>
-        <script src="components/message-composer/message-composer.js" defer></script>
-        <script src="components/message-viewer/message-viewer.js" defer></script>
         <script src="components/mail-logo/mail-logo.js" defer></script>
-        <script src="components/common-star/common-star.js" defer></script>
+        <script src="components/message-viewer/message-viewer.js" defer></script>
+        <script src="components/folder-list/folder-list.js" defer></script>
 
         <!-- TODO unify -->
     </head>
@@ -25,13 +21,7 @@
         <header class="horizontal-container">
             <!--<div ng-include=" 'components/mail-search.html' "></div>-->
             <mail-logo></mail-logo>
-            
-            <search-panel class="horizontal-center"
-                default-query=" mailCtrl.defaultQuery "
-                on-search-start = "mailCtrl.search(query) "
-                >
-            </search-panel>
-            
+                       
             <div class="right-align" ng-controller="AccountController as accountCtrl">
                 {{accountCtrl.accountEmail}}
             </div>
@@ -57,38 +47,25 @@
                         on-select="mailCtrl.selectFolder(folder)" 
                         allow-create="true">
                     </folder-list>
-
                 </section>
             </nav>
             
             <section class="mail-composer horizontal-center "
                      ng-show="mailCtrl.composerActive">
-                <message-composer 
-                    draft="mailCtrl.draft"
-                    on-save="mailCtrl.updateDraft(draft)"
-                    on-send="mailCtrl.send()"
-                    on-cancel="mailCtrl.closeComposer()"
-                >
-                    
-                </message-composer>    
             </section> 
 
             <section class="horizontal-center vertical-container">
-                <message-list 
-                    title="mailCtrl.messageListTitle"
-                    messages="mailCtrl.messages"
-                    on-current-message-changed="mailCtrl.selectCurrentMessage(message)"
-
-                    >
-                </message-list>
-                <div class="spacer">
-                        <hr>
+                <div>
+                    <h3>TEST: mailCtrl.currentMessage</h3>
+                    <pre>{{mailCtrl.currentMessage | json}}</pre>
+                    
+                    <h3>TEST: mailCtrl.messages</h3>
+                    <pre>{{mailCtrl.messages | json }}</div>
                 </div>
+                
                 <message-viewer 
                     message="mailCtrl.currentMessage"
-                    on-reply="mailCtrl.replyTo(message)"
-                    on-forward="mailCtrl.forward(message)"
-                    on-delete="mailCtrl.delete(message)"
+
                     >
                 </message-viewer>
             </section>

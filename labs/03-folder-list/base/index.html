@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.css">    
+        <link rel="stylesheet" href="style.css">    
+
+        <script src="../../lib/angular-1.5.8/angular.js" defer></script>
+        <script src="app.js" defer></script>
+        <script src="mailController.js" defer></script>
+        <script src="components/mailService/mailService.js" defer></script>
+        <script src="components/mail-logo/mail-logo.js" defer></script>
+        <script src="components/message-viewer/message-viewer.js" defer></script>
+        <script src="components/folder-list/folder-list.js" defer></script>
+
+        <!-- TODO unify -->
+    </head>
+
+<body ng-app="mailApp">
+    <div class="page-container" 
+        ng-controller="MailController as mailCtrl">
+
+        <header class="horizontal-container">
+            <!--<div ng-include=" 'components/mail-search.html' "></div>-->
+            <mail-logo></mail-logo>
+                       
+            <div class="right-align" ng-controller="AccountController as accountCtrl">
+                {{accountCtrl.accountEmail}}
+            </div>
+        </header>
+
+        <section class="page-center horizontal-container">
+            <nav class="page-left-menu">
+                
+                <section class="compose-toolbar">
+                    <button ng-click="mailCtrl.compose()" class="btn btn-danger">Compose</button>
+                </section>
+                
+                <section class="folder-list">
+                    <!-- TODO 1) use the folder-list component -->
+
+                    <!-- TODO 2) handle the on-select event -->
+
+                    <!-- TODO 3) add another list bound to customFodlers, allowing for custom folder creation -->
+
+                </section>
+            </nav>
+            
+            <section class="mail-composer horizontal-center "
+                     ng-show="mailCtrl.composerActive">
+            </section> 
+
+            <section class="horizontal-center vertical-container">
+                <div>
+                    <h3>TEST: mailCtrl.currentMessage</h3>
+                    <pre>{{mailCtrl.currentMessage | json}}</pre>
+                    
+                    <h3>TEST: mailCtrl.messages</h3>
+                    <pre>{{mailCtrl.messages | json }}</div>
+                </div>
+                
+                <message-viewer 
+                    message="mailCtrl.currentMessage"
+
+                    >
+                </message-viewer>
+            </section>
+
+        </section>
+        
+        <footer >
+            <div class="center-block">
+            powered by Angular 1.5 and <a href="http://www.nispro.it">NIS s.r.l.</a>
+            </div> 
+        </footer>
+        
+    </div>
+</body>
+</html>

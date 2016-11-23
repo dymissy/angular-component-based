@@ -1,0 +1,16 @@
+<h3>TODO bind title here</h3>
+<ul class="nav nav-pills nav-stacked">
+    <li  ng-repeat="folder in folderListCtrl.folders track by $index"
+        ng-click="TODO"
+        
+        >
+            <div class="folder" ng-class="{ 'folder-selected': folder == folderListCtrl.currentFolder}">{{$index}} - {{folder}}</div>
+
+    </li>
+    <li class="folder"  ng-if="TODO bind allowcreate parameter">
+        <form class="form-inline">
+        <input class="form-control" type="text" ng-model="newFolderName">
+        <button ng-click="folderListCtrl.addFolder(newFolderName)">+</button>
+        </form>
+    </li>
+</ul>
