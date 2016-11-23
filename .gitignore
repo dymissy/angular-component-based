@@ -39,3 +39,5 @@ jspm_packages
 reveal
 .vscode
 
+node_modules
+
