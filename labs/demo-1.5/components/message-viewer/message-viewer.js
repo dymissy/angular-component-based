@@ -16,4 +16,25 @@ angular.module("mailApp").component("messageViewer",{
 });
 
 function MessageViewerController() {
+
+    //FUTURE lab - refactor the messageActionsToolbar with transclusion
+    this.reply = function () {
+        
+        this.onReply({
+            message : this.message
+        });
+    };
+    this.forward = function () {
+        this.onForward({
+            message : this.message
+        });      
+    };
+
+    this.delete = function () {
+        //TODO ask for confirmation
+        this.onDelete({
+            message : this.message
+        });
+    };
+
 }

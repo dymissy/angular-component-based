@@ -7,10 +7,10 @@ angular.module("mailApp").component("folderList",{
     //they are applied as fields in the controller object
     bindings: {
         //name of the field in the controller = name of the attribute in the html
-        folders : "=folders",  //mandatory
+        folders : "<folders",  //mandatory
         //it is the same as folders:"=?"
         //? means optional
-        defaultFolder : "=?", //the default folder is optional, 
+        defaultFolder : "<?", //the default folder is optional, 
         title: "@", //equivalent to "@title",
         allowCreate: "@",
         onSelect: "&",

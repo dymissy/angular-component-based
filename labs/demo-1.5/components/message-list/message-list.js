@@ -7,13 +7,10 @@ angular.module("mailApp").component("messageList",{
     //they are applied as fields in the controller object
     bindings: {
         //name of the field in the controller = name of the attribute in the html
-        messages : "=messages",  //mandatory
+        messages : "<messages",  //mandatory
         //it is the same as folders:"=?"
         //? means optional
-        title: "=", //equivalent to "=title",
-        onReply : "&",
-        onForward : "&",
-        onDelete : "&",
+        title: "<", //equivalent to "<title",
         onSelect : "&",
         onCurrentMessageChanged: "&"
         
@@ -30,7 +27,8 @@ function MessageListController() {
     this.setCurrentMessage = function(index)
     {
         this.currentMessage = this.messages[index];
-        
+        this.currentMessageIndex = index; 
+
         this.onCurrentMessageChanged({
             message: this.currentMessage
         });
@@ -38,40 +36,28 @@ function MessageListController() {
 
     this.next = function () {
         
-        if (this.currentMessageIndex < this.messages.length)
+        if (this.currentMessageIndex < this.messages.length -1)
             this.currentMessageIndex++;
 
         this.setCurrentMessage(this.currentMessageIndex);
     };
 
     this.prev = function () {        
-        if (this.currentMessageIndex <0)
+        if (this.currentMessageIndex >0)
             this.currentMessageIndex--;
 
         this.setCurrentMessage(this.currentMessageIndex);
     };
     
-    //FUTURE lab - refactor the messageActionsToolbar with transclusion
-    this.reply = function (message) {
+    this.$onChanges = function (changes){
+        if (changes.messages)
+        {
+            this.currentMessageIndex = 0;
         
-        this.onReply({
-            message : message
-        });
-    };
-    this.forward = function (message) {
-        //TODO lab        
-    };
+            if (this.messages && this.messages.length)
+                this.setCurrentMessage(this.currentMessageIndex);
+        }
+    }
 
-    this.delete = function (message) {
-        //TODO ask for confirmation
-        this.onDelete({
-            message : message
-        });
-    };
-
-    this.currentMessageIndex = 0;
- 
-    if (this.messages && this.messages.length)
-        this.setCurrentMessage(this.currentMessageIndex);
 
 }

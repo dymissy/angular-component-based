@@ -4,19 +4,21 @@
     <div class="message-summary">
 
         
-        <div> From: {{messageViewerCtrl.message.from}}</div>
+        <div class="sender"> From: {{messageViewerCtrl.message.from}}</div>
         <div> To: {{messageViewerCtrl.message.to}}</div>
         <div> 10/03/2016 12:00</div><!-- TODO date formatted with filter -->
-        
-        <span class="star"> * </span>
-        <button class="btn" ng-click="messageListCtrl.reply(message)">Reply</button>
-        <button class="btn" ng-click="messageListCtrl.forward(message)">Forward</button>
-        <button class="btn" ng-click="messageListCtrl.delete(message)">Delete</button>
+        <div>
+        <span class="glyphicon glyphicon-star-empty" ></span>
+        <button class="btn" ng-click="messageViewerCtrl.reply()">Reply</button>
+        <button class="btn" ng-click="messageViewerCtrl.forward()">Forward</button>
+        <button class="btn" ng-click="messageViewerCtrl.delete()">Delete</button>
+        </div>
     </div>
-    
+    <div>
     <pre class="message-body">
         {{messageViewerCtrl.message.body}}
     </pre>
+    </div>
     <!--
     <pre>{{message | json}}</pre>
     -->

@@ -5,7 +5,7 @@ angular.module("mailApp")
         controllerAs: "composeCtrl",
         templateUrl: "components/message-composer/message-composer.html",
         bindings: {
-            "draft" : "=", //input parameter, with data binding
+            "draft" : "<", //input parameter, with data binding
             "onSend" : "&", //callback
             "onSave" : "&",
             "onCancel" : "&",
@@ -33,16 +33,16 @@ function MessageComposerController(AccountService){
         return draft;
     };
     
-    this.send = function (message)
+    this.send = function ()
     {
         this.onSend({
-            message : message
+            message : this.draft
         });     
     };
-    this.save = function (message)
+    this.save = function ()
     {
         this.onSave({
-            message : message
+            message : this.draft
         });     
     };
     this.cancel = function ()

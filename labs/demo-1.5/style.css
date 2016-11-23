@@ -3,6 +3,10 @@ body {
     margin: 0px; 
 }
 
+section {
+    padding: 15px
+}
+
 .page-container {
 
     display: flex; 
@@ -47,15 +51,16 @@ body {
 header {
     background-color: lightblue;
     padding: 5px;
-    min-height: 50px; 
+    min-height: 40px; 
 }
 
 footer {
-    background-color: lightblue
+    background-color: lightblue;
+    min-height: 30px; 
 }
 
 .logo{
-
+    min-width: 200px;
     padding-right: 20px;  
 }
 
@@ -79,8 +84,8 @@ footer {
     padding: 2px;
 }
 
-.message-summary{
-    
+.message-body{
+    margin: 10px
 }
 
 .message-body{
@@ -116,7 +121,22 @@ footer {
     margin-left: auto;
 }
 
+.folder {
+    padding: 5px;
+    border-left: 3px;
+}
 .folder-selected {
     font-weight: bold;
-    border-left: 3 px solid red;
+    border-left: 3px solid red;
+    
+}
+
+.align-right { float:right }
+
+hr { margin-top: 5px;margin-bottom: 10px; }
+.nav-pills>li>a {padding: 5px 10px;}
+
+
+.sender {
+    font-weight: bold;
 }
