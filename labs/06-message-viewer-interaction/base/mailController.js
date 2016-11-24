@@ -59,8 +59,9 @@ function MailController(AccountService, MessageService)
 
         //TODO create a template message for the reply (switch sender and receiver, add "Re: ", add ">" to body)
         var template = {
-            //TODO
-
+            to: message.from,
+            subject: 'Re: ' + message.subject,
+            body: "\n> " + message.body
         };
         this.compose(template);
         
@@ -68,7 +69,12 @@ function MailController(AccountService, MessageService)
 
     this.forward = function (message){
         //TODO optional lab:
-        
+
+        var template = {
+            subject: 'Fwd: ' + message.subject,
+            body: "\n> " + message.body
+        };
+        this.compose(template);
     };
 
         //TODO discuss if initialize the sender here or in the composer    
@@ -77,6 +83,8 @@ function MailController(AccountService, MessageService)
     };
 
     this.send = function (message) {
+        console.log(message);
+
         this.closeComposer(); 
         //TODO add to sent
     };

@@ -7,7 +7,9 @@ angular.module("mailApp")
         bindings: {
             "draft" : "<", //input parameter, with data binding
             //TODO BIND reply, forward, cancel callbacks
-            
+            onSave: '&',
+            onCancel: '&',
+            onSend: '&',
         }
    
     });
@@ -33,14 +35,18 @@ function MessageComposerController(AccountService){
     
     this.send = function ()
     {
-        //TODO   
+        this.onSend({
+            message: this.draft
+        });
     };
+
     this.save = function ()
     {
-       //TODO   
+       this.onSave();
     };
+
     this.cancel = function ()
     {
-       //TODO     
+       this.onCancel();
     };
 }

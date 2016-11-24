@@ -56,9 +56,9 @@
                      ng-show="mailCtrl.composerActive">
                 <message-composer 
                     draft="mailCtrl.draft"
-                    
-                ><!-- TODO-BIND-EVENTS-HERE -->
-                    
+                    on-send="mailCtrl.send(message)"
+                    on-cancel="mailCtrl.closeComposer()"
+                    on-save="mailCtrl.closeComposer()">
                 </message-composer>    
             </section> 
 
