@@ -1,11 +1,11 @@
 <div class="message">
-    <h3 class="message-header"><!-- TODO bind subject here --> </h3>
+    <h3 class="message-header">{{ messageViewerCtrl.message.subject }} </h3>
     <hr>
     <div class="message-summary">
 
-        
-        <div class="sender"> From: <!-- TODO bind from here --> </div>
-        <div> To: <!-- TODO bind to here --> </div>
+
+        <div class="sender"> From: {{ messageViewerCtrl.message.from }} </div>
+        <div> To: {{ messageViewerCtrl.message.to }} </div>
         <div> 10/03/2016 12:00</div><!-- TODO date formatted with filter -->
         <div>
         <common-star entity="messageViewerCtrl.message"></common-star>
@@ -15,8 +15,6 @@
         </div>
     </div>
     <div>
-    <pre class="message-body">
-        {{<!-- TODO bind body here --> }}
-    </pre>
+    <pre class="message-body">{{ messageViewerCtrl.message.body }}</pre>
     </div>
 </div>

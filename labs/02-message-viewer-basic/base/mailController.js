@@ -26,6 +26,8 @@ function MailController(AccountService, MessageService)
         return MessageService.getMessages();
     };
 
+    this.messages = loadInbox();
+    this.currentMessage = this.messages[0];
 }
 
 angular.module("mailApp")
