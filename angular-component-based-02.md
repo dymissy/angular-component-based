@@ -26,7 +26,7 @@ Re-implementation of the framework
 
 ## Angular 2
 Strongly Component-based
-* 
+* no more controllers, scopes
 * hierarchical Dependency Injection
 * configurable change detection
     * dirty checking (zone.js)
@@ -63,31 +63,30 @@ Initial surprise, but you get used to it.
 * very clear if input or output binding
 * automatically works with all DOM events and properties
   * without requiring ad-hoc directives such as ``ng-show``
-  * also works with Web Components
+  * also works with Web Components, css classes
 
 
 
-## TOSORT
+## Example with a custom component
 ```
-    <message-list [list]="" (selected)="mailCtrl.select(message)">
-
+    <message-list [list]="messages" (selected)="select(message)">
 ```
 
-TODO review
+
 
 ## From Angular 1.5 to Angular 2 - constructs
-|  |  |  |  |  |
-|---|---|---|---|---|
-| {{expression}} |  |  |  |  |
-| filters | pipes |  |  |  |
+* {{expression}} 
+* filters -> pipes
 
-| ng-controller |  |  |  |  |
-| angular.component |  |  |  |  |
-| angular.component |  |  |  |  |
-| attribute directives |  |  |  |  |
-| structural directives |  |  |  |  |
-| ng-repeat | *ngFor |  |  |  |
-| angular.module |  |  |  |  |
+* ng-controller -> @Component classes
+* angular.component -> @Component classes
+
+* attribute directives -> same!
+* ng-repeat -> *ngFor
+* ng-if -> *ngIf
+
+Modules
+* angular.module -> @NgModule classes 
 
 https://angular.io/docs/ts/latest/cookbook/a1-a2-quick-reference.html
 
@@ -100,26 +99,19 @@ The key concepts and approach stay the same
 * minor syntax changes
 * component configuration in Metadata
   * as @Component annotations in Typescript
-  * as TODO in ES5 - ES6
-
-
-
-## Angular2 Hello World Component
-
-<tr *ngFor="let movie of movies">
-
-filter done in the component
-
-
-Service DI
+  * as fluent DSL in ES5 - ES6
 
 https://angular.io/docs/ts/latest/guide/cheatsheet.html
 
 
 
+## Angular2 Hello World Component
+
+
+
 ## Aside - how to bootstrap an Angular2 Application
 From ng-app to AppModule
-
+```typescript
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app.module';
 
@@ -136,18 +128,27 @@ import { AppComponent }  from './app.component';
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
+```
 
 
-## more
+
+## Common directives
+From 
+```html
 <div ng-class="{active: isActive}">
 <div ng-class="{active: isActive,
                    shazam: isImportant}">
+```
 
+To 
+
+```html
 
 <div [ngClass]="{active: isActive}">
 <div [ngClass]="{active: isActive,
                  shazam: isImportant}">
 <div [class.active]="isActive">
+```
 
 
 
@@ -157,11 +158,26 @@ we focus on Component APIs
 Additional concepts (module bundling, etc ) are needed before going into production
 
 
+
 ## Passing inputs to Components
+```
+import {Component} from '@angular/core';
+import {Input, Output, EventEmitter} from '@angular/core';
+
+@Component({selector: 'message-viewer', 
+    templateUrl : "components/message-viewer/message-viewer.html",
+    inputs : ["message"],
+    outputs: ["onReply","onForward","onDelete"],
+    directives: ["common-star"]
+})
+export class MessageViewerComponent  {
+    message; 
+```
+
+
 
 ## Propagating output from Components
-
-
+```
 @Component({
   moduleId: module.id,
   selector: 'app-confirm',
@@ -179,7 +195,12 @@ export class ConfirmComponent {
     this.notOk.emit(true);
   }
 }
+```
 
+
+
+## Without Typescript
+```
 ConfirmComponent.annotations = [
   new ng.core.Component({
     selector: 'app-confirm',
@@ -204,24 +225,25 @@ ConfirmComponent.prototype.onOkClick = function() {
 ConfirmComponent.prototype.onNotOkClick = function() {
   this.notOk.emit(true);
 }
+```
 
-
-
-## Routed Components ???
 
 
 ## What if I do not want Typescript? 
 https://angular.io/docs/ts/latest/cookbook/ts-to-js.html
-
+```
 HeroComponent.annotations = [
   new ng.core.Component({
     selector: 'hero-view',
     template: '<h1>{{title}}: {{getName()}}</h1>'
   })
 ];
+```
+
 
 
 ## Or with DSL 
+```
 app.HeroDslComponent = ng.core.Component({
     selector: 'hero-view-dsl',
     template: '<h1>{{title}}: {{getName()}}</h1>',
@@ -232,51 +254,30 @@ app.HeroDslComponent = ng.core.Component({
     },
     getName: function() { return 'Windstorm'; }
   });
+```
 
-## more
 
-app.HeroDIComponent = HeroDIComponent;
-HeroDIComponent.annotations = [
-  new ng.core.Component({
-    selector: 'hero-di',
-    template: '<h1>Hero: {{name}}</h1>'
-  })
-];
-HeroDIComponent.parameters = [ app.DataService ];
-function HeroDIComponent(dataService) {
-  this.name = dataService.getHeroName();
-}
-
-## DI
-In TypeScript and ES6-with-decorators, you precede the constructor parameters with injection qualifiers such as:
-
-@Optional sets the parameter to null if the service is missing
-@Attribute to inject a host element attribute value
-@ContentChild to inject a content child
-@ViewChild to inject a view child
-@Host to inject a service in this component or its host
-@SkipSelf to inject a service provided in an ancestor of this component
-
-##STUDY
-
-Host binding
+## Routed Components
 
 
 
-## TO CHECK
+## Hierarchical DI
+
+
+
+## ngUpgrade
 * How to incrementally upgrade an application from 1.5 to 2.0 with ng-upgrade
 
-## TO CHECK 
+
+
+## Performance 
 * Sidenote: performance tips
+
+
 
 ##LAB - manual migration
 A final lab will demonstrate porting the application to Angular 2.0.
 
-
-##LAB ??? - with ng-upgrade
-
-
-## Angular2 Components
 
 
 ## Angular 2 - to probe further
