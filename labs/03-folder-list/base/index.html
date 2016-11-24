@@ -35,12 +35,18 @@
                 </section>
                 
                 <section class="folder-list">
-                    <!-- TODO 1) use the folder-list component -->
+                    <folder-list
+                        folders="mailCtrl.folders"
+                        default-folder="mailCtrl.defaultFolder"
+                        on-select="mailCtrl.selectFolder(folder)">
+                    </folder-list>
 
-                    <!-- TODO 2) handle the on-select event -->
-
-                    <!-- TODO 3) add another list bound to customFodlers, allowing for custom folder creation -->
-
+                    <folder-list
+                            folders="mailCtrl.customFolders"
+                            allow-create="true"
+                            on-add-new="mailCtrl.addFolder(folder)"
+                            on-select="mailCtrl.selectFolder(folder)">
+                    </folder-list>
                 </section>
             </nav>
             

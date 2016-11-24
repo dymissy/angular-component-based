@@ -41,6 +41,10 @@ function MailController(AccountService, MessageService)
         
         this.messages = MessageService.getMessagesByFolder(folderName);
     };
+
+    this.addFolder = function(folder) {
+        alert('chiamata api');
+    };
 }
 
 angular.module("mailApp")

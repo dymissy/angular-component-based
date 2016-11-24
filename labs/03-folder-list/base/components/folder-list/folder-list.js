@@ -1,21 +1,16 @@
 //component name - component definition object
-angular.module("mailApp").component("TODO component name",{
+angular.module("mailApp").component("folderList",{
     templateUrl : "components/folder-list/folder-list.html",
-    controller: //TODO component controller name,
-    controllerAs: "TODO ALIAS", 
+    controller: FolderListController,
+    controllerAs: "folderListCtrl",
     
     //they are applied as fields in the controller object
     bindings: {
-        //name of the field in the controller = name of the attribute in the html
-        
-        //TODO bind folder list parameter
-
-        //? means optional
-        //TODO bind title parameter 
-        
-        //TODO bind onSelect callback
-        
-        //optional bind allowCreate: "@",
+        folders: '<folders',
+        title: '@',
+        defaultFolder : "<?",
+        onSelect: "&",
+        allowCreate: "@",
         onAddNew: "&",
     } 
     
@@ -28,8 +23,11 @@ function FolderListController()
         
     
     this.addFolder = function (newFolderName) {
-        //TODO add folder to list
-        //TODO notify parent with event
+        this.folders.push(newFolderName);
+
+        this.onAddNew({
+            folder: newFolderName
+        });
     };
     
     this.select = function (folder)
@@ -37,8 +35,9 @@ function FolderListController()
         //update current folder locally
         this.currentFolder = folder; 
 
-        //TODO notify parent component 
-
+        this.onSelect({
+            folder: folder
+        });
     };
     
     if (this.defaultFolder)
