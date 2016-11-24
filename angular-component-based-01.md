@@ -572,6 +572,8 @@ We achieve complex behaviours by collaboration of many simpler components
 
 # Two way databinding vs one-way dataflow
 * When to use two-way DataBinding and when One-Way Data Flow
+<img src="images/phone-wires.jpg" >
+
 * events vs outputs vs services
 
 
@@ -586,32 +588,8 @@ Integrate the mail-composer component with the reply button in message viewer
 
 
 
+# Bonus: Clean Components
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# SORT!!!!!
 
 
 ##Concept 1 - Naming
@@ -619,11 +597,15 @@ Integrate the mail-composer component with the reply button in message viewer
 - what is a good name?
 - same but different: the importance of conventions
 
+
+
 ##Concept 3 - What's in a good function?
 - single responsibility
 - separing inputs from outputs
 - if you have to do 3 things, make 4 functions
 - primitives and orchestrators
+
+
 
 ##Concept 4 - What's in a good class? Design Principles
 - Single Responsibility Principle
@@ -631,112 +613,6 @@ Integrate the mail-composer component with the reply button in message viewer
 - composition vs inheritance (and the Open/Closed principle)
 - Dependency Injection
 - interfaces and the importante of Contracts
-
-##TO SORT
-- The "Boy Scout Rule"
-
-##Incremental development and evolutionary design
-- how to do everything incrementally
-- Separation of Concerns in practice: ask yourself questions!
-- incremental implementation: in-application Mocks & the Walking
-Skeleton approach
-- how to keep track of what you do and what is missing
-- how to manage incremental commits
-
-====
-
-#TOPICS
-How does our code become unmanageable? A practical example
-- fast-forward demo through the life of an (apparently) trivial function
-
-
-
-## Legacy Code Anonymous ...
-Hello... My name is Carlo, 
-
-and I have been writing Legacy Code for 15 years...
-
-
-
-### This workshop is not about the "perfect" way to develop software
-
-### but more on the need for never stop improving our approach
-
-
-
-## My phone does not work
-Can you have a look? 
-
-<img src="images/phone-wires.jpg" >
-
-
-
-## the effects: 
-* code-writing time -> decreases
-* application-ready time -> never done
-* time needed for bug fixes and new features -> increases
-
-
-
-## what happens after 6 months?
-The original developer has left the company and your boss asks you: 
-
->Can you simply automatically do this for all employees?
-> and fix the case where the input file is incorrect
-> and fix the rounding errors
->And keep two intermediate totals for cash and credit card expenses?
-
->And integrate with the acccounting application?
-
-
-
-#:-(
->Well... it will take N weeks just to understand and fix the bugs in the original code...
-
-Which become months with regression testing
-
-
-
-##why this happens? 
-the "deadly sins" of development 
-* cut & paste,
-* optimization lust
-* haste
-* false savings 
-* naming avarice
-* trial and error wrath
-* my code is perfect pride
-* making it right is too hard - discouragement
-
-
-
-#Lab 01
-Lab
-
-* write down 3 problems with the expense report code
-
-
-
-## Do you know this man? 
-<img height="400px" src="images/800px-Ignaz_Semmelweis_1860.jpg">
-
-
-
-## It is _not_ brain surgery 
-* Ignaz Semmelweis
-  * http://www.npr.org/sections/health-shots/2015/01/12/375663920/the-doctor-who-championed-hand-washing-and-saved-women-s-lives
-  * http://semmelweis.org/about/dr-semmelweis-biography/
-
-* He championed washing hands before childbirth and surgery
-
-    
-
-## The simples things are the most difficult to do
-* he was obstracized by the medical community!
-  * it can't be that simple...
-  * we just don't have time...
-
-* And now?
 
 
 
@@ -766,8 +642,6 @@ It takes a Deliberate approach and constant effort
 >To complicate, just add, everyone is able to complicate
 >Few are able to simplify
 >Bruno Munari
-
-
 
 
 
@@ -803,9 +677,6 @@ http://llewellynfalco.blogspot.it/p/infographics.html
 
 
 
-
-
-
 ## Single Responsibility
 >Each function should do 1 thing
 
@@ -834,25 +705,6 @@ And put the answer in different sub-functions
 
 
 ## 3 things, 4 functions
-If your function needs to perform a non-trivial task: 
-* import data, transform it and store it in the DB
-
-Instead of 
-```js
-  readData(){
-    file.open();
-    while(..)
-      {
-        line = readLine();
-        obj = trasformLine(line);
-        saveInDB(obj); 
-      }
-  }
-```
-what's better?
-
-
-
 ## Primitives, Orchestrators, level of abstraction
 * Primitives: small, focused, typically use-case independent
 * Orchestrators: implement use-cases by combining primitives
@@ -862,16 +714,6 @@ what's better?
 * benefits:
   * more reusable
   * easier to test
-
-
-
-
-##Concept 4 - What's in a good class? Design Principles
-- Single Responsibility Principle
-- collaborating with other classes
-- composition vs inheritance (and the Open/Closed principle)
-- Dependency Injection
-- interfaces and the importante of Contracts
 
 
 
@@ -886,56 +728,6 @@ So, why to we do this all the time in our code?
 
 ##Single Responsibility Principle
 Responsibility == reason to change
-
-
-
-## SRP - Again
-A class should do one thing
-* and have a single reason to change 
-
-Consequences:
-* classes should be small
-* classes should be focused
-* classes need to collaborate to perform complex tasks
-
-
-
-
-
-## Collaborating classes
-* We need a way of making collaboration easier
-
-* With Dependency Injection
-  * separate creation of classes from linking instances
-  * create A
-  * create B
-  * something else passes B to A
-
-* You do not need a framework for that...
-
-
-
-## Inheritance - with caution
-* Inheritance is the strongest link between classes
-* useful with caution
-
-
-
-## Prefer composition
-* combine parts 
-* a derived class becomes the composition of a base behaviour + additional custom behaviour
-
-
-
-## OCP 
->Open for extension, Closed for Modification
-
-
-
-## Interfaces and Contracts
-* esplicit vs implicit
-* Decoupling changes and detecting regressions
-* separate clean parts from dirty code
 
 
 
@@ -955,7 +747,6 @@ Incremental transformation
 
 
 
-
 ## The Boy Scout Rule
 >Leave the campsite a little better than you found it
 
@@ -963,8 +754,6 @@ Incremental transformation
 
 The power of compounding many small changes _in the same direction_
 * 1% time
-
-
 
 
 
@@ -981,221 +770,3 @@ The power of compounding many small changes _in the same direction_
 ## Learning to learn
 * Kathy Sierra
 * https://www.youtube.com/watch?v=FKTxC9pl-WM
-
-
-## Why do we need tests? 
-* be confident that we can change the code with very low risk
-* simple refactorings are performed at the AST level in the IDE
-  * renaming
-  * extracting method
-
-
-
-##Lab
-* Refactor the initial Expense Report example
-
-* name things
-* extract sub-methods
-* create classes
-* extract interfaces
-
-
-
-##The principles
-So what did we just do? Understand the principles
-- the relationship between quality and productivity
-- the need for a continuous chain of small, safe steps of design &
-implementation
-
-
-
-##Quality vs Productivity 
-Traditionally, Quality is seen as an alternative to raw development Speed
-* this is partly true only in the short term
-
-Four quadrants: 
-* high quality, high productivity -> tends to further improve
-* high quality, low productivity -> tends not to improve, and go to
-* low quality, low productivity -> tends to get worse 
-* low quality, high productivity -> tends to go to the previous one
-
-* Productivity curves at different quality ratio
-
-
-
-## Continuous Chain
-* Faster small steps beat bigger steps
-* also easier to parallelize
-
-* The smaller the better
-
-
-
-## Safe steps
-* you need to be able to check that everything works
-* run frequently 
-* test frequently
-
-
-
-## Evolutionary design vs emergent design
-* Making things easier to change
-* This does not mean that you do not have a vision
-* Plan the overall Path
-  * but execute a step at a time
-
-
-
-##Lab
-Define the main structure
-Split in sub-tastks with post-its
-Discuss the optimal order
-Introduce mock / support steps
-
-
-
-##More practice and Katas
-* Elefant Carpaccio
-  * https://docs.google.com/document/u/1/d/1TCuuu-8Mm14oxsOnlk8DqfZAA1cvtYu9WGv67Yj_sSk/pub
-
-
-
-##Incremental development and evolutionary design
-- how to do everything incrementally
-- Separation of Concerns in practice: ask yourself questions!
-- incremental implementation: in-application Mocks & the Walking
-Skeleton approach
-- how to keep track of what you do and what is missing
-- how to manage incremental commits
-
-
-
-## How to do everything incrementally
-* You can do _everything_ incrementally
-  * decouple release from deployment
-  * branch by abstraction
-  * do both
-  * expand-contract
-
-
-
-## How to make it smaller - ask yourself questions
-* what if instead I only do X?
-* A & B -> A then B
-
-
-
-## in -app mocking
-* like in the tests
-
-
-
-## Walking Skeleton
-* entire application / workflow structure
-* made of empty (or logging-only) components
-* incrementally filled-in
-* also useful for testing
-
-
-
-## How to keep track of what you do and what's missing
-* Write it down
-* comment it with temporary comments
-* code it!
-
-
-
-## Incremental commits
-* Each commit should start from a stable state and lead to a stable but more complete state
-
-* Push vs commit in DVCS
-
-
-
-## Link: continuous delivery
-http://continuousdelivery.com/
-
-
-
-##Lab
-Define the main structure
-Split in sub-tastks with post-its
-Discuss the optimal order
-Introduce mock / support steps
-
-
-
-##A more complex example - applying the method to real-world problems
-- the feedback loop
-- splitting the problem
-- getting more feedback
-- getting feedback more frequently
-- model the problem
-- avoid trial and error, but if you need it, do it fast
-
-
-
-##Code ?!#%
-When it does not work...
-
-And we do not know why...
-
-
-
-## The feedback loop
-* Idea --> Change --> Observation --> Evaluation
-
-Learning
-
-
-
-## The time sink
-* limit in the amount of changes
-* time required 
-  * to effect change
-  * to observe the result
-* information collected after the change
-
-
-
-## Experiments
-* split the problem
-* make it smaller
-* make it independent
-
-
-
-## Getting more feedback
-* adding more log / monitoring
-* adding higher quality log info
-* adding dedicated code / validation logic
-* better tools (inspectors...)
-
-
-
-## Getting feedback more frequently 
-* make the loop faster
-  * e.g. jrebel
-  * gulp serve
-  * livereload
-
-
-
-## Model based, system thinking
-* Hypothesis
-* Which test do I need? 
-* write it down
-* does the result conforms to the expectation? 
-* reduce uncertainty
-
-
-
-# Avoid trial and error
-Or at least do it fast
-
-
-# Beyond Clean Code
-
-## Clean Projects
-* http://misko.hevery.com/2008/07/16/top-10-things-i-do-on-every-project/
-
