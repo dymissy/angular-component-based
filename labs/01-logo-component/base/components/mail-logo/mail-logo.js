@@ -1,5 +1,5 @@
 angular.module("mailApp")
-    .component("", //TODO add component name 
+    .component("mailLogo", //TODO add component name
     {
-        templateUrl: "components/TODO/TODO.html", //TODO add component html path
+        templateUrl: "components/mail-logo/mail-logo.html", //TODO add component html path
     });
