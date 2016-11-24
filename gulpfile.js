@@ -3,7 +3,7 @@ var gulp = require('gulp');
 // Let's make things more readable by
 // encapsulating each part's setup
 // in its own method
-var EXPRESS_PORT = 8000;
+var EXPRESS_PORT = 8080;
 var EXPRESS_ROOT = __dirname;
 var LIVERELOAD_PORT = 35729;
 
